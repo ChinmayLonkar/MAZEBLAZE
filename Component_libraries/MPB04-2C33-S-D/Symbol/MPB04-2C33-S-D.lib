@@ -1,0 +1,43 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# MPB04-2C33-S-D
+#
+DEF MPB04-2C33-S-D S 0 40 Y N 1 L N
+F0 "S" -210 420 50 H V L BNN
+F1 "MPB04-2C33-S-D" -190 -430 50 H V L BNN
+F2 "SW_MPB04-2C33-S-D" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "CUI Devices" 0 0 50 H I L BNN "MANUFACTURER"
+F5 "1.0" 0 0 50 H I L BNN "PARTREV"
+F6 "Manufacturer recommendations" 0 0 50 H I L BNN "STANDARD"
+F7 "16.4mm" 0 0 50 H I L BNN "MAXIMUM_PACKAGE_HEIGHT"
+DRAW
+P 2 0 0 6 -100 200 0 240 N
+C 100 300 13 0 0 6 N
+C 100 100 13 0 0 6 N
+P 2 0 0 6 0 240 110 284 N
+P 2 0 0 6 200 100 115 100 N
+P 2 0 0 6 200 300 115 300 N
+P 2 0 0 6 -100 200 -200 200 N
+P 2 0 0 6 -100 -200 0 -160 N
+C 100 -100 13 0 0 6 N
+C 100 -300 13 0 0 6 N
+P 2 0 0 6 0 -160 110 -116 N
+P 2 0 0 6 200 -300 115 -300 N
+P 2 0 0 6 200 -100 115 -100 N
+P 2 0 0 6 -100 -200 -200 -200 N
+P 2 0 0 6 0 240 0 -160 N
+S -200 -400 200 400 0 0 10 f
+X ~ 3 300 300 100 L 40 40 0 0 P 
+X ~ 2 -300 200 100 R 40 40 0 0 P 
+X ~ 1 300 100 100 L 40 40 0 0 P 
+X ~ 6 300 -100 100 L 40 40 0 0 P 
+X ~ 5 -300 -200 100 R 40 40 0 0 P 
+X ~ 4 300 -300 100 L 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library

@@ -1,0 +1,39 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# 3296W-1-202LF
+#
+DEF 3296W-1-202LF VR 0 40 N N 1 L N
+F0 "VR" -200 401 50 H V L BNN
+F1 "3296W-1-202LF" -200 -200 50 H V L BNN
+F2 "TRIM_3296W-1-202LF" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "05/16" 0 0 50 H I L BNN "PARTREV"
+F5 "Bourns" 0 0 50 H I L BNN "MANUFACTURER"
+F6 "Manufacturer Recommendation" 0 0 50 H I L BNN "STANDARD"
+DRAW
+P 2 0 0 6 -250 0 -230 0 N
+P 2 0 0 10 -230 0 -200 40 N
+P 2 0 0 10 -200 40 -150 -50 N
+P 2 0 0 10 -150 -50 -100 40 N
+P 2 0 0 10 -100 40 -50 -50 N
+P 2 0 0 10 -50 -50 0 40 N
+P 2 0 0 10 0 40 50 -50 N
+P 2 0 0 10 50 -50 100 40 N
+P 2 0 0 10 100 40 150 -50 N
+P 2 0 0 10 150 -50 200 40 N
+P 2 0 0 10 230 0 200 40 N
+P 2 0 0 6 230 0 250 0 N
+P 2 0 0 10 0 50 -50 100 N
+P 2 0 0 10 -50 100 50 100 N
+P 2 0 0 10 50 100 0 50 N
+P 4 0 0 10 -50 100 50 100 0 50 -50 100 f
+X ~ 1 -350 0 100 R 40 40 0 0 P 
+X ~ 3 350 0 100 L 40 40 0 0 P 
+X ~ 2 0 200 100 D 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library

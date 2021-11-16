@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Meshmerize)(type Legacy)(uri ${KIPRJMOD}/Meshmerize.lib)(options "")(descr ""))
+  (lib (name Meshmerize-rescue)(type Legacy)(uri ${KIPRJMOD}/Meshmerize-rescue.lib)(options "")(descr ""))
+)

@@ -1,0 +1,7 @@
+(fp_lib_table
+  (lib (name 1042)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/1042)(options "")(descr ""))
+  (lib (name 3296W-1-202LF)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/3296W-1-202LF)(options "")(descr ""))
+  (lib (name ESP32-DEVKITC-32D)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/ESP32-DEVKITC-32D)(options "")(descr ""))
+  (lib (name MPB04-2C33-S-D)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/MPB04-2C33-S-D)(options "")(descr ""))
+  (lib (name TCRT5000)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/TCRT5000)(options "")(descr ""))
+)

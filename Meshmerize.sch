@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L power:GND #PWR0101
-U 1 1 6162FD43
-P 2950 1150
-F 0 "#PWR0101" H 2950 900 50  0001 C CNN
-F 1 "GND" V 2955 1022 50  0000 R CNN
-F 2 "" H 2950 1150 50  0001 C CNN
-F 3 "" H 2950 1150 50  0001 C CNN
-	1    2950 1150
-	0    -1   -1   0   
-$EndComp
-$Comp
 L power:GND #PWR0102
 U 1 1 61630654
 P 2950 1750
@@ -104,8 +93,6 @@ F 3 "" H 6200 2350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	1200 2950 1350 2950
-Wire Wire Line
 	4650 1600 4750 1600
 $Comp
 L Motor:Motor_DC M1
@@ -130,8 +117,6 @@ F 3 "~" H 7050 2160 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1250 1150 1350 1150
-Wire Wire Line
 	6050 2500 6200 2500
 Wire Wire Line
 	6050 2350 6200 2350
@@ -145,20 +130,10 @@ Text GLabel 1200 2150 0    50   Input ~ 0
 B1
 Text GLabel 1200 2250 0    50   Input ~ 0
 B2
-Wire Wire Line
-	1200 1950 1350 1950
-Wire Wire Line
-	1200 2050 1350 2050
-Wire Wire Line
-	1200 2150 1350 2150
-Wire Wire Line
-	1200 2250 1350 2250
 Text GLabel 1200 1850 0    50   Input ~ 0
 PWMA
 Text GLabel 1200 2350 0    50   Input ~ 0
 PWMB
-Wire Wire Line
-	1200 2350 1350 2350
 Text GLabel 4050 2350 0    50   Input ~ 0
 A1
 Text GLabel 4050 2500 0    50   Input ~ 0
@@ -413,8 +388,6 @@ Wire Notes Line
 	500  500  500  7750
 Wire Notes Line
 	250  5400 8050 5400
-Wire Notes Line
-	3500 500  3500 5400
 Text GLabel 1200 1750 0    50   Input ~ 0
 D1
 Text GLabel 1200 1650 0    50   Input ~ 0
@@ -476,23 +449,11 @@ Wire Notes Line
 Wire Notes Line
 	8300 500  8300 6500
 Wire Wire Line
-	1200 1350 1350 1350
-Wire Wire Line
-	1200 1450 1350 1450
-Wire Wire Line
-	1200 1550 1350 1550
-Wire Wire Line
-	1200 1650 1350 1650
-Wire Wire Line
-	1200 1750 1350 1750
-Wire Wire Line
 	8850 1200 8750 1200
 Wire Wire Line
 	8750 1200 8750 1400
 Wire Wire Line
 	8750 1600 8850 1600
-Wire Wire Line
-	9450 1300 9550 1300
 Wire Wire Line
 	9550 1700 9450 1700
 Text GLabel 8700 1400 0    50   Input ~ 0
@@ -676,10 +637,6 @@ Wire Wire Line
 Connection ~ 10050 2850
 Wire Wire Line
 	10050 2850 10050 3200
-Text GLabel 3050 1350 2    50   Input ~ 0
-END_LED
-Wire Wire Line
-	2950 1350 3050 1350
 Text GLabel 10350 2850 2    50   Input ~ 0
 END_LED
 Wire Wire Line
@@ -692,51 +649,10 @@ Text Notes 9450 4750 0    50   ~ 0
 Indication_ LEDS
 Text Notes 2350 7450 0    50   ~ 0
 POWER_CIRCUITARY\n
-$Comp
-L Meshmerize-rescue:MPB04-2C33-S-D-MPB04-2C33-S-D S1
-U 1 1 616CA76E
-P 9150 1400
-F 0 "S1" H 9150 1967 50  0000 C CNN
-F 1 "MPB04-2C33-S-D" H 9150 1876 50  0000 C CNN
-F 2 "MPB04-2C33-S-D:SW_MPB04-2C33-S-D" H 9150 1400 50  0001 L BNN
-F 3 "" H 9150 1400 50  0001 L BNN
-F 4 "CUI Devices" H 9150 1400 50  0001 L BNN "MANUFACTURER"
-F 5 "1.0" H 9150 1400 50  0001 L BNN "PARTREV"
-F 6 "Manufacturer recommendations" H 9150 1400 50  0001 L BNN "STANDARD"
-F 7 "16.4mm" H 9150 1400 50  0001 L BNN "MAXIMUM_PACKAGE_HEIGHT"
-	1    9150 1400
-	1    0    0    -1  
-$EndComp
 Text GLabel 9700 1700 2    50   Input ~ 0
 SWO
-NoConn ~ 2950 1250
-NoConn ~ 2950 1450
-NoConn ~ 2950 1550
-NoConn ~ 2950 1650
-NoConn ~ 2950 1850
-NoConn ~ 2950 1950
-NoConn ~ 2950 2050
-NoConn ~ 2950 2150
-NoConn ~ 2950 2250
-NoConn ~ 2950 2350
-NoConn ~ 2950 2450
-NoConn ~ 2950 2550
-NoConn ~ 2950 2650
-NoConn ~ 2950 2750
-NoConn ~ 2950 2950
-NoConn ~ 2950 2850
-NoConn ~ 1350 2850
-NoConn ~ 1350 2750
-NoConn ~ 1350 2650
-NoConn ~ 1350 1250
-NoConn ~ 9450 1500
-NoConn ~ 9450 1100
-Wire Wire Line
-	1200 1850 1350 1850
 Wire Wire Line
 	6250 2650 6050 2650
-Wire Wire Line
-	9550 1300 9550 1700
 Wire Wire Line
 	9700 1700 9550 1700
 Connection ~ 9550 1700
@@ -744,7 +660,7 @@ Text GLabel 6250 2650 2    50   Input ~ 0
 +V
 Text GLabel 10200 3900 2    50   Input ~ 0
 3V3
-Text GLabel 1250 1150 0    50   Input ~ 0
+Text GLabel 1250 1150 1    50   Input ~ 0
 3V3
 Text GLabel 4600 2200 0    50   Input ~ 0
 3V3
@@ -752,7 +668,7 @@ Text GLabel 3200 4050 1    50   Input ~ 0
 3V3
 Text GLabel 8100 5650 1    50   Input ~ 0
 3V3
-Text GLabel 1200 2950 0    50   Input ~ 0
+Text GLabel 1200 2950 3    50   Input ~ 0
 +V
 Text GLabel 6200 2500 2    50   Input ~ 0
 3V3
@@ -1125,7 +1041,7 @@ F 3 "~" H 2800 5850 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L SS34:SS34 D6
+L Meshmerize-rescue:SS34-SS34 D6
 U 1 1 61938266
 P 3450 5850
 F 0 "D6" H 3450 6067 50  0000 C CNN
@@ -1272,27 +1188,280 @@ Connection ~ 2300 5850
 Text GLabel 1350 2550 0    50   Input ~ 0
 DEB
 $Comp
-L Switch:SW_Push SW1
-U 1 1 6198CE46
-P 9850 5550
-F 0 "SW1" H 9850 5835 50  0000 C CNN
-F 1 "SW_Push" H 9850 5744 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_PUSH_6mm" H 9850 5750 50  0001 C CNN
-F 3 "~" H 9850 5750 50  0001 C CNN
-	1    9850 5550
+L Connector:Conn_01x19_Male J2
+U 1 1 61965FE2
+P 3650 2050
+F 0 "J2" H 3622 1982 50  0000 R CNN
+F 1 "Conn_01x19_Male" H 4350 800 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x19_P2.54mm_Vertical" H 3650 2050 50  0001 C CNN
+F 3 "~" H 3650 2050 50  0001 C CNN
+	1    3650 2050
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 6162FD43
+P 2950 1150
+F 0 "#PWR0101" H 2950 900 50  0001 C CNN
+F 1 "GND" V 2955 1022 50  0000 R CNN
+F 2 "" H 2950 1150 50  0001 C CNN
+F 3 "" H 2950 1150 50  0001 C CNN
+	1    2950 1150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2950 1550 3450 1550
+Wire Wire Line
+	2950 1450 3450 1450
+Wire Wire Line
+	2950 1250 3450 1250
+Wire Wire Line
+	2950 1850 3450 1850
+Wire Wire Line
+	2950 1950 3450 1950
+Wire Wire Line
+	2950 2050 3450 2050
+Wire Wire Line
+	2950 2150 3450 2150
+Wire Wire Line
+	2950 2250 3450 2250
+Wire Wire Line
+	2950 2350 3450 2350
+Wire Wire Line
+	2950 2450 3450 2450
+Wire Wire Line
+	2950 2550 3450 2550
+Wire Wire Line
+	2950 2650 3450 2650
+Wire Wire Line
+	2950 2750 3450 2750
+Wire Wire Line
+	2950 2850 3450 2850
+Wire Wire Line
+	2950 2950 3450 2950
+$Comp
+L Connector:Conn_01x19_Male J1
+U 1 1 61A13AF0
+P 650 2050
+F 0 "J1" H 622 1982 50  0000 R CNN
+F 1 "Conn_01x19_Male" H 1250 3300 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x19_P2.54mm_Vertical" H 650 2050 50  0001 C CNN
+F 3 "~" H 650 2050 50  0001 C CNN
+	1    650  2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	850  1150 1350 1150
+Wire Wire Line
+	850  2950 1350 2950
+Wire Wire Line
+	850  2850 1350 2850
+Wire Wire Line
+	850  2650 1350 2650
+Wire Wire Line
+	850  1250 1350 1250
+Wire Wire Line
+	850  1350 1350 1350
+Wire Wire Line
+	850  1450 1350 1450
+Wire Wire Line
+	850  1550 1350 1550
+Wire Wire Line
+	850  1650 1350 1650
+Wire Wire Line
+	850  1750 1350 1750
+Wire Wire Line
+	850  1850 1350 1850
+Wire Wire Line
+	850  1950 1350 1950
+Wire Wire Line
+	850  2050 1350 2050
+Wire Wire Line
+	850  2150 1350 2150
+Wire Wire Line
+	850  2250 1350 2250
+Wire Wire Line
+	850  2350 1350 2350
+Wire Wire Line
+	850  2750 1350 2750
+Wire Wire Line
+	850  2550 1350 2550
+Wire Wire Line
+	850  2450 1350 2450
+Connection ~ 1350 2450
+Wire Wire Line
+	2950 1750 3450 1750
+Connection ~ 2950 1750
+Wire Wire Line
+	3450 1150 2950 1150
+Connection ~ 2950 1150
+Wire Wire Line
+	9550 1300 9550 1700
+NoConn ~ 9450 1100
+NoConn ~ 9450 1500
+$Comp
+L Meshmerize-rescue:MPB04-2C33-S-D-MPB04-2C33-S-D S1
+U 1 1 616CA76E
+P 9150 1400
+F 0 "S1" H 9150 1967 50  0000 C CNN
+F 1 "MPB04-2C33-S-D" H 9150 1876 50  0000 C CNN
+F 2 "MPB04-2C33-S-D:SW_MPB04-2C33-S-D" H 9150 1400 50  0001 L BNN
+F 3 "" H 9150 1400 50  0001 L BNN
+F 4 "CUI Devices" H 9150 1400 50  0001 L BNN "MANUFACTURER"
+F 5 "1.0" H 9150 1400 50  0001 L BNN "PARTREV"
+F 6 "Manufacturer recommendations" H 9150 1400 50  0001 L BNN "STANDARD"
+F 7 "16.4mm" H 9150 1400 50  0001 L BNN "MAXIMUM_PACKAGE_HEIGHT"
+	1    9150 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 1300 9550 1300
+Wire Wire Line
+	10100 1200 10000 1200
+Wire Wire Line
+	10000 1200 10000 1400
+Wire Wire Line
+	10000 1600 10100 1600
+Wire Wire Line
+	10800 1700 10700 1700
+Wire Wire Line
+	9950 1400 10000 1400
+Connection ~ 10000 1400
+Wire Wire Line
+	10000 1400 10000 1600
+Text Notes 10950 2050 0    50   ~ 0
+Switches
+Wire Wire Line
+	10950 1700 10800 1700
+Connection ~ 10800 1700
+Wire Wire Line
+	10800 1300 10800 1700
+NoConn ~ 10700 1100
+NoConn ~ 10700 1500
+$Comp
+L Meshmerize-rescue:MPB04-2C33-S-D-MPB04-2C33-S-D S2
+U 1 1 61C255CD
+P 10400 1400
+F 0 "S2" H 10400 1967 50  0000 C CNN
+F 1 "MPB04-2C33-S-D" H 10400 1876 50  0000 C CNN
+F 2 "MPB04-2C33-S-D:SW_MPB04-2C33-S-D" H 10400 1400 50  0001 L BNN
+F 3 "" H 10400 1400 50  0001 L BNN
+F 4 "CUI Devices" H 10400 1400 50  0001 L BNN "MANUFACTURER"
+F 5 "1.0" H 10400 1400 50  0001 L BNN "PARTREV"
+F 6 "Manufacturer recommendations" H 10400 1400 50  0001 L BNN "STANDARD"
+F 7 "16.4mm" H 10400 1400 50  0001 L BNN "MAXIMUM_PACKAGE_HEIGHT"
+	1    10400 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10700 1300 10800 1300
+$Comp
+L power:GND #PWR04
+U 1 1 61C5BE2E
+P 9950 1400
+F 0 "#PWR04" H 9950 1150 50  0001 C CNN
+F 1 "GND" V 9955 1272 50  0000 R CNN
+F 2 "" H 9950 1400 50  0001 C CNN
+F 3 "" H 9950 1400 50  0001 C CNN
+	1    9950 1400
+	0    1    1    0   
+$EndComp
+Text GLabel 10950 1700 2    50   Input ~ 0
+DEB
+Text GLabel 3750 1650 2    50   Input ~ 0
+SCL_OLED
+Wire Wire Line
+	2950 1650 3450 1650
+Connection ~ 3450 1650
+Wire Wire Line
+	3450 1650 3750 1650
+$Comp
+L Connector:Conn_01x04_Female J3
+U 1 1 61C92E9E
+P 9850 5700
+F 0 "J3" H 9878 5676 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 9878 5585 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 9850 5700 50  0001 C CNN
+F 3 "~" H 9850 5700 50  0001 C CNN
+	1    9850 5700
+	1    0    0    -1  
+$EndComp
+Text GLabel 9500 5700 0    50   Input ~ 0
+3V3
+$Comp
+L power:GND #PWR05
+U 1 1 61CA6F41
+P 9500 5600
+F 0 "#PWR05" H 9500 5350 50  0001 C CNN
+F 1 "GND" V 9505 5472 50  0000 R CNN
+F 2 "" H 9500 5600 50  0001 C CNN
+F 3 "" H 9500 5600 50  0001 C CNN
+	1    9500 5600
+	0    1    1    0   
+$EndComp
+Text GLabel 9500 5800 0    50   Input ~ 0
+SCL_OLED
+Text GLabel 9500 5900 0    50   Input ~ 0
+SDA_OLED
+Wire Wire Line
+	9500 5600 9650 5600
+Wire Wire Line
+	9500 5700 9650 5700
+Wire Wire Line
+	9500 5800 9650 5800
+Wire Wire Line
+	9500 5900 9650 5900
+Text GLabel 1250 2750 0    50   Input ~ 0
+END_LED
+Wire Wire Line
+	2950 1350 3450 1350
+Connection ~ 3450 1350
+Wire Wire Line
+	3450 1350 3750 1350
+Text GLabel 3750 1350 2    50   Input ~ 0
+SDA_OLED
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 61D54CC2
+P 4550 7300
+F 0 "H1" H 4650 7346 50  0000 L CNN
+F 1 "MountingHole" H 4650 7255 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 4550 7300 50  0001 C CNN
+F 3 "~" H 4550 7300 50  0001 C CNN
+	1    4550 7300
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR0107
-U 1 1 6198D4F1
-P 9650 5550
-F 0 "#PWR0107" H 9650 5300 50  0001 C CNN
-F 1 "GND" H 9655 5377 50  0000 C CNN
-F 2 "" H 9650 5550 50  0001 C CNN
-F 3 "" H 9650 5550 50  0001 C CNN
-	1    9650 5550
+L Mechanical:MountingHole H2
+U 1 1 61D71B8C
+P 4550 7500
+F 0 "H2" H 4650 7546 50  0000 L CNN
+F 1 "MountingHole" H 4650 7455 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 4550 7500 50  0001 C CNN
+F 3 "~" H 4550 7500 50  0001 C CNN
+	1    4550 7500
 	1    0    0    -1  
 $EndComp
-Text GLabel 10050 5550 2    50   Input ~ 0
-DEB
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 61D7F19A
+P 5400 7500
+F 0 "H4" H 5500 7546 50  0000 L CNN
+F 1 "MountingHole" H 5500 7455 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 5400 7500 50  0001 C CNN
+F 3 "~" H 5400 7500 50  0001 C CNN
+	1    5400 7500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 61D8C6A9
+P 5400 7300
+F 0 "H3" H 5500 7346 50  0000 L CNN
+F 1 "MountingHole" H 5500 7255 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 5400 7300 50  0001 C CNN
+F 3 "~" H 5400 7300 50  0001 C CNN
+	1    5400 7300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -226,27 +226,15 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 4315 4635 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	865  4185 865  4335
-Wire Wire Line
-	865  4335 1365 4335
-Wire Wire Line
 	1465 4335 1465 4085
-Wire Wire Line
-	1915 4185 1915 4335
-Wire Wire Line
-	1915 4335 2415 4335
 Wire Wire Line
 	2515 4335 2515 4085
 Wire Wire Line
 	1465 4835 1465 5135
 Wire Wire Line
-	865  5135 865  4935
-Wire Wire Line
 	2515 4835 2515 5135
 Wire Wire Line
 	2515 5135 2415 5135
-Wire Wire Line
-	1915 5135 1915 4935
 $Comp
 L power:GND #PWR0120
 U 1 1 617F90A0
@@ -274,14 +262,12 @@ Wire Wire Line
 	2415 4335 2415 4435
 Wire Wire Line
 	2415 4435 2615 4435
-Connection ~ 2415 4335
 Wire Wire Line
 	2415 4335 2515 4335
 Wire Wire Line
 	1365 4335 1365 4435
 Wire Wire Line
 	1365 4435 1515 4435
-Connection ~ 1365 4335
 Wire Wire Line
 	1365 4335 1465 4335
 Wire Wire Line
@@ -289,17 +275,11 @@ Wire Wire Line
 Wire Wire Line
 	1365 5285 1515 5285
 Wire Wire Line
-	865  5135 1365 5135
-Connection ~ 1365 5135
-Wire Wire Line
 	1365 5135 1465 5135
 Wire Wire Line
 	2415 5135 2415 5285
 Wire Wire Line
 	2415 5285 2665 5285
-Connection ~ 2415 5135
-Wire Wire Line
-	2415 5135 1915 5135
 Text GLabel 765  3985 0    50   Input ~ 0
 An1
 Text GLabel 765  4735 0    50   Input ~ 0
@@ -341,10 +321,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 4100 4645 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2870 4170 2870 4420
-Wire Wire Line
-	2870 4420 3470 4420
-Wire Wire Line
 	3470 4420 3470 4070
 Text GLabel 2870 3970 0    50   Input ~ 0
 An5
@@ -352,7 +328,6 @@ Text GLabel 3520 4420 2    50   Input ~ 0
 D5
 Wire Wire Line
 	3470 4420 3520 4420
-Connection ~ 3470 4420
 $Comp
 L power:GND #PWR02
 U 1 1 618268E8
@@ -1246,8 +1221,6 @@ Wire Wire Line
 Wire Wire Line
 	975  2770 1475 2770
 Wire Wire Line
-	975  3070 1475 3070
-Wire Wire Line
 	975  1270 1475 1270
 $Comp
 L Connector:Conn_01x19_Male J1
@@ -1299,7 +1272,7 @@ F 3 "~" H 3775 2170 50  0001 C CNN
 $EndComp
 Text GLabel 1475 2670 0    50   Input ~ 0
 DEB
-Text GLabel 1325 3070 3    50   Input ~ 0
+Text GLabel 690  3310 0    50   Input ~ 0
 +V
 Text GLabel 1375 1270 1    50   Input ~ 0
 3V3
@@ -1504,4 +1477,67 @@ Wire Notes Line
 	8305 5130 11210 5130
 Wire Notes Line
 	8295 2490 11200 2490
+$Comp
+L Device:R_POT RV2
+U 1 1 6199FDC2
+P 3360 4990
+F 0 "RV2" H 3290 4944 50  0000 R CNN
+F 1 "R_POT" H 3290 5035 50  0000 R CNN
+F 2 "3296W-1-202LF:TRIM_3296W-1-202LF" H 3360 4990 50  0001 C CNN
+F 3 "~" H 3360 4990 50  0001 C CNN
+	1    3360 4990
+	-1   0    0    1   
+$EndComp
+Text GLabel 3100 4990 0    50   Input ~ 0
+POT_CON
+Wire Wire Line
+	3210 4990 3100 4990
+$Comp
+L power:GND #PWR0107
+U 1 1 619F79F0
+P 3360 5190
+F 0 "#PWR0107" H 3360 4940 50  0001 C CNN
+F 1 "GND" H 3365 5017 50  0000 C CNN
+F 2 "" H 3360 5190 50  0001 C CNN
+F 3 "" H 3360 5190 50  0001 C CNN
+	1    3360 5190
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3360 5140 3360 5190
+Wire Wire Line
+	3360 4840 3360 4790
+Text GLabel 3360 4790 1    50   Input ~ 0
+3V3
+Text GLabel 2870 4170 0    50   Input ~ 0
+POT_CON
+Text GLabel 1915 4185 0    50   Input ~ 0
+POT_CON
+Text GLabel 865  4185 0    50   Input ~ 0
+POT_CON
+Text GLabel 865  4935 0    50   Input ~ 0
+POT_CON
+Text GLabel 1915 4935 0    50   Input ~ 0
+POT_CON
+Text GLabel 1290 3310 2    50   Input ~ 0
+Vin_ESP
+Text GLabel 1415 3070 0    50   Input ~ 0
+Vin_ESP
+Wire Wire Line
+	975  3070 1475 3070
+$Comp
+L Jumper:SolderJumper_2_Open JP1
+U 1 1 61B9BE6D
+P 990 3310
+F 0 "JP1" H 990 3515 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 990 3424 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm" H 990 3310 50  0001 C CNN
+F 3 "~" H 990 3310 50  0001 C CNN
+	1    990  3310
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1140 3310 1290 3310
+Wire Wire Line
+	690  3310 840  3310
 $EndSCHEMATC

@@ -5,4 +5,5 @@
   (lib (name MPB04-2C33-S-D)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/MPB04-2C33-S-D)(options "")(descr ""))
   (lib (name TCRT5000)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/TCRT5000)(options "")(descr ""))
   (lib (name SRA_Logo)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/SRA_Logo)(options "")(descr ""))
+  (lib (name SS34)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/SS34)(options "")(descr ""))
 )

@@ -1,0 +1,9 @@
+Manufacturer=Sumida
+PartNumber=CDRH104RNP-220NC
+PartCategory=Inductor
+PackageCategory=Inductors Precision Moulded
+PinCount=2
+Version=1.1
+Released=2017-09-26 13:23:12
+Downloaded=2021-11-19 10:08:34
+3D=Y

@@ -900,17 +900,6 @@ F 3 "https://www.olimex.com/Products/Breadboarding/BB-PWR-3608/resources/MT3608.
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:L L1
-U 1 1 61935A19
-P 1980 6245
-F 0 "L1" V 2170 6245 50  0000 C CNN
-F 1 "22uH" V 2079 6245 50  0000 C CNN
-F 2 "Inductor_SMD:L_12x12mm_H6mm" H 1980 6245 50  0001 C CNN
-F 3 "~" H 1980 6245 50  0001 C CNN
-	1    1980 6245
-	0    -1   -1   0   
-$EndComp
-$Comp
 L Meshmerize-rescue:SS34-SS34 D6
 U 1 1 61938266
 P 2630 6245
@@ -979,11 +968,7 @@ Wire Wire Line
 Wire Wire Line
 	1480 6245 1480 6745
 Wire Wire Line
-	2130 6245 2280 6245
-Wire Wire Line
 	2830 6245 3130 6245
-Wire Wire Line
-	1480 6245 1830 6245
 Wire Wire Line
 	2080 6945 2080 6745
 Wire Wire Line
@@ -998,12 +983,7 @@ Connection ~ 1480 7245
 Wire Wire Line
 	2680 6745 2680 6395
 Wire Wire Line
-	2680 6395 2280 6395
-Wire Wire Line
-	2280 6395 2280 6245
-Connection ~ 2280 6245
-Wire Wire Line
-	2280 6245 2430 6245
+	2680 6395 2385 6395
 Wire Wire Line
 	2380 7145 2380 7245
 Connection ~ 2380 7245
@@ -1054,7 +1034,6 @@ Wire Wire Line
 	730  6245 880  6245
 Wire Wire Line
 	1380 6245 1480 6245
-Connection ~ 1480 6245
 $Comp
 L Connector:Conn_01x04_Female J3
 U 1 1 61C92E9E
@@ -1540,4 +1519,33 @@ Wire Wire Line
 	1140 3310 1290 3310
 Wire Wire Line
 	690  3310 840  3310
+$Comp
+L CDRH104RNP-220NC:CDRH104RNP-220NC L1
+U 1 1 6199AF4F
+P 1535 6245
+F 0 "L1" H 1935 6470 50  0000 C CNN
+F 1 "22uH" H 1935 6379 50  0000 C CNN
+F 2 "CDRH104RNP-220NC:INDPM102100X400N" H 2185 6295 50  0001 L CNN
+F 3 "http://products.sumida.com/products/pdf/CDRH104R.pdf" H 2185 6195 50  0001 L CNN
+F 4 "Fixed Inductors 22uH 2.5A" H 2185 6095 50  0001 L CNN "Description"
+F 5 "4" H 2185 5995 50  0001 L CNN "Height"
+F 6 "Sumida" H 2185 5895 50  0001 L CNN "Manufacturer_Name"
+F 7 "CDRH104RNP-220NC" H 2185 5795 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "851-CDRH104RNP-220NC" H 2185 5695 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/Sumida/CDRH104RNP-220NC?qs=iXFGfj0UVr7lF4yqUlpBKQ%3D%3D" H 2185 5595 50  0001 L CNN "Mouser Price/Stock"
+F 10 "CDRH104RNP-220NC" H 2185 5495 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/cdrh104rnp-220nc/sumida" H 2185 5395 50  0001 L CNN "Arrow Price/Stock"
+	1    1535 6245
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1535 6245 1480 6245
+Connection ~ 1480 6245
+Wire Wire Line
+	2335 6245 2385 6245
+Wire Wire Line
+	2385 6395 2385 6245
+Connection ~ 2385 6245
+Wire Wire Line
+	2385 6245 2430 6245
 $EndSCHEMATC

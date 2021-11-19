@@ -6,4 +6,5 @@
   (lib (name TCRT5000)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/TCRT5000)(options "")(descr ""))
   (lib (name SRA_Logo)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/SRA_Logo)(options "")(descr ""))
   (lib (name SS34)(type KiCad)(uri ${KIPRJMOD}/Component_libraries/SS34)(options "")(descr ""))
+  (lib (name CDRH104RNP-220NC)(type Legacy)(uri ${KIPRJMOD}/Component_libraries/Inductor_CDRH104RNP-220NC/CDRH104RNP-220NC.mod)(options "")(descr ""))
 )

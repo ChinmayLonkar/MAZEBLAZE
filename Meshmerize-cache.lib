@@ -38,6 +38,31 @@ X V+ 4 -100 300 150 D 50 50 5 1 W
 ENDDRAW
 ENDDEF
 #
+# CDRH104RNP-220NC_CDRH104RNP-220NC
+#
+DEF CDRH104RNP-220NC_CDRH104RNP-220NC L 0 30 Y Y 1 F N
+F0 "L" 650 250 50 H V L CNN
+F1 "CDRH104RNP-220NC_CDRH104RNP-220NC" 650 150 50 H V L CNN
+F2 "INDPM102100X400N" 650 50 50 H I L CNN
+F3 "http://products.sumida.com/products/pdf/CDRH104R.pdf" 650 -50 50 H I L CNN
+F4 "Fixed Inductors 22uH 2.5A" 650 -150 50 H I L CNN "Description"
+F5 "4" 650 -250 50 H I L CNN "Height"
+F6 "Sumida" 650 -350 50 H I L CNN "Manufacturer_Name"
+F7 "CDRH104RNP-220NC" 650 -450 50 H I L CNN "Manufacturer_Part_Number"
+F8 "851-CDRH104RNP-220NC" 650 -550 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/Sumida/CDRH104RNP-220NC?qs=iXFGfj0UVr7lF4yqUlpBKQ%3D%3D" 650 -650 50 H I L CNN "Mouser Price/Stock"
+F10 "CDRH104RNP-220NC" 650 -750 50 H I L CNN "Arrow Part Number"
+F11 "https://www.arrow.com/en/products/cdrh104rnp-220nc/sumida" 650 -850 50 H I L CNN "Arrow Price/Stock"
+DRAW
+A 250 -2 50 1777 -23 0 1 6 N 300 0 200 0
+A 350 -2 50 1777 -23 0 1 6 N 400 0 300 0
+A 450 -2 50 1777 -23 0 1 6 N 500 0 400 0
+A 550 -2 50 1777 -23 0 1 6 N 600 0 500 0
+X ~ 1 0 0 200 R 50 50 0 0 P
+X ~ 2 800 0 200 L 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
 # Connector_Conn_01x04_Female
 #
 DEF Connector_Conn_01x04_Female J 0 40 Y N 1 F N
@@ -153,29 +178,6 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device_L
-#
-DEF Device_L L 0 40 N N 1 F N
-F0 "L" -50 0 50 V V C CNN
-F1 "Device_L" 75 0 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-$FPLIST
- Choke_*
- *Coil*
- Inductor_*
- L_*
-$ENDFPLIST
-DRAW
-A 0 -75 25 -899 899 0 1 0 N 0 -100 0 -50
-A 0 -25 25 -899 899 0 1 0 N 0 -50 0 0
-A 0 25 25 -899 899 0 1 0 N 0 0 0 50
-A 0 75 25 -899 899 0 1 0 N 0 50 0 100
-X 1 1 0 150 50 D 50 50 1 1 P
-X 2 2 0 -150 50 U 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
 # Device_LED
 #
 DEF Device_LED D 0 40 N N 1 F N
@@ -189,9 +191,9 @@ $FPLIST
  LED_THT:*
 $ENDFPLIST
 DRAW
-P 2 0 1 10 -50 -50 -50 50 N
+P 2 0 1 8 -50 -50 -50 50 N
 P 2 0 1 0 -50 0 50 0 N
-P 4 0 1 10 50 -50 50 50 -50 0 50 -50 N
+P 4 0 1 8 50 -50 50 50 -50 0 50 -50 N
 P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
 P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
 X K 1 -150 0 100 R 50 50 1 1 P

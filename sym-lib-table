@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name Meshmerize)(type Legacy)(uri ${KIPRJMOD}/Meshmerize.lib)(options "")(descr ""))
   (lib (name Meshmerize-rescue)(type Legacy)(uri ${KIPRJMOD}/Meshmerize-rescue.lib)(options "")(descr ""))
+  (lib (name CDRH104RNP-220NC)(type Legacy)(uri ${KIPRJMOD}/Component_libraries/Inductor_CDRH104RNP-220NC/CDRH104RNP-220NC.lib)(options "")(descr ""))
 )

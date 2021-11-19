@@ -13,16 +13,17 @@ Following are some images of the PCB Design
 ![](Assets/Front.png)
 
 * Bottom View
+
 ![](Assets/Back.png)
 
 * Front Copper Layer
+
 ![](Assets/FCu.png)
 
 * Bottom Copper Layer
+
 ![](Assets/BCu.png)
 
 * Routing 
 
 ![](Assets/Routing.png)
-
-All Files are designed in KiCad.

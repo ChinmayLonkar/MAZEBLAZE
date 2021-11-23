@@ -1,5 +1,5 @@
-#ifndef PIN_DEFS_H
-#define PIN_DEFS_H
+//#ifndef PIN_DEFS_H
+//#define PIN_DEFS_H
 
 #define CHECK(x)                \
     do                          \

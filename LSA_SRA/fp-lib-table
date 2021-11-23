@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name meshmerize_pcb)(type KiCad)(uri ${KIPRJMOD}/meshmerize_pcb.pretty)(options "")(descr ""))
-)

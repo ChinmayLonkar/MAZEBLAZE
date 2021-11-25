@@ -1,5 +1,8 @@
 #include "lsa.h"
 
+int black_margin = 0;
+int white_margin = 100;
+
 esp_err_t enable_lsa()
 {
     esp_err_t ret1, ret2, ret3, ret4, ret5, ret6;
@@ -16,13 +19,24 @@ lsa_readings_t get_reading_lsa()
     lsa_readings_t lsa;
     {
 
-        lsa.lsa_reading[0] = adc1_get_raw(ADC1_CHANNEL_0);
-        lsa.lsa_reading[1] = adc1_get_raw(ADC1_CHANNEL_3);
-        lsa.lsa_reading[2] = adc1_get_raw(ADC1_CHANNEL_6);
-        lsa.lsa_reading[3] = adc1_get_raw(ADC1_CHANNEL_7);
-        lsa.lsa_reading[4] = adc1_get_raw(ADC1_CHANNEL_4);
+        lsa.lsa_[0] = adc1_get_raw(ADC1_CHANNEL_0);
+        lsa.lsa_[1] = adc1_get_raw(ADC1_CHANNEL_3);
+        lsa.lsa_[2] = adc1_get_raw(ADC1_CHANNEL_6);
+        lsa.lsa_[3] = adc1_get_raw(ADC1_CHANNEL_7);
+        lsa.lsa_[4] = adc1_get_raw(ADC1_CHANNEL_4);
 
         return lsa;
+    }
+    for (int m = 0; m < 5; m++)
+    {
+        if(get_reading_lsa().lsa_[m] < 100)
+        {
+            get_reading_lsa().lsa_[m] = black_margin;
+        }
+        else
+        {
+            get_reading_lsa().lsa_[m] = white_margin;
+        }
     }
     lsa_readings_t line_sensor_readings;
     {
@@ -33,9 +47,9 @@ lsa_readings_t get_reading_lsa()
 
         for (int i = 0; i < NUMBER_OF_SAMPLES; i++)
         {
-            for (int j = 1; j < 6; j++)
+            for (int j = 0; j < 5; j++)
             {
-                line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + lsa.lsa_reading[j];
+                line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + lsa.lsa_[j];
             }
         }
 

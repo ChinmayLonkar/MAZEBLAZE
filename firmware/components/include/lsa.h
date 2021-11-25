@@ -13,7 +13,7 @@ typedef union lsa_readings_t
 {
     int lsa_[5];
     int lsa_reading[5];
-
+    int pos;
 } lsa_readings_t;
 
 lsa_readings_t get_reading_lsa();

@@ -1,4 +1,5 @@
 #include "mazeblaze.h"
+#include "tuning_http_server.h"
 
 void app_main()
 {
@@ -10,7 +11,7 @@ void app_main()
         int lower_duty_cycle = 50;
         int higher_duty_cycle = 76;
         int duty_cycle = 60;
-        int Kp = 1, Kd = 0, Ki = 0;
+        int kp = 1, kd = 0, ki = 0;
         unsigned int prev_position = 0;
         long cumulative_position = 0;
         int current_position = ((int)position().pos) - 100;
@@ -22,7 +23,7 @@ void app_main()
             cumulative_position = max;
         if (cumulative_position < -max)
             cumulative_position = -max;
-        int correction_speed = Kp * current_position + Kd * position_rate + Ki * cumulative_position;
+        int correction_speed = kp * current_position + kd * position_rate + ki * cumulative_position;
         duty_cycle = bound((optimum_duty_cycle + correction_speed), lower_duty_cycle, higher_duty_cycle);
         if (position().pos < 0)
         {

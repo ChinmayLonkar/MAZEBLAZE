@@ -11,7 +11,7 @@ void app_main()
         int lower_duty_cycle = 50;
         int higher_duty_cycle = 76;
         int duty_cycle = 60;
-        int kp = 1, kd = 0, ki = 0;
+        // int kp = 1, kd = 0, ki = 0;
         unsigned int prev_position = 0;
         long cumulative_position = 0;
         int current_position = ((int)position().pos) - 100;
@@ -23,7 +23,7 @@ void app_main()
             cumulative_position = max;
         if (cumulative_position < -max)
             cumulative_position = -max;
-        int correction_speed = kp * current_position + kd * position_rate + ki * cumulative_position;
+        int correction_speed = read_pid_const().kp * current_position + read_pid_const().kd * position_rate + read_pid_const().ki * cumulative_position;
         duty_cycle = bound((optimum_duty_cycle + correction_speed), lower_duty_cycle, higher_duty_cycle);
         if (position().pos < 0)
         {

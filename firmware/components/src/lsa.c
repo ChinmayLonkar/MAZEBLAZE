@@ -1,7 +1,7 @@
 #include "lsa.h"
 
-int black_margin = 0;
-int white_margin = 100;
+#define black_margin 0
+#define white_margin 100
 
 esp_err_t enable_lsa()
 {
@@ -27,17 +27,10 @@ lsa_readings_t get_reading_lsa()
 
         return lsa;
     }
-    for (int m = 0; m < 5; m++)
-    {
-        if(get_reading_lsa().lsa_[m] < 100)
-        {
-            get_reading_lsa().lsa_[m] = black_margin;
-        }
-        else
-        {
-            get_reading_lsa().lsa_[m] = white_margin;
-        }
-    }
+}
+lsa_readings_t read_lsa()
+{
+
     lsa_readings_t line_sensor_readings;
     {
         for (int i = 0; i < 5; i++)
@@ -49,13 +42,24 @@ lsa_readings_t get_reading_lsa()
         {
             for (int j = 0; j < 5; j++)
             {
-                line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + lsa.lsa_[j];
+                line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + get_reading_lsa().lsa_[j];
             }
         }
 
         for (int i = 0; i < 5; i++)
         {
             line_sensor_readings.lsa_reading[i] = line_sensor_readings.lsa_reading[i] / NUMBER_OF_SAMPLES;
+        }
+        for (int m = 0; m < 5; m++)
+        {
+            if (line_sensor_readings.lsa_reading[m] < 1000)
+            {
+                line_sensor_readings.lsa_read[m] = white_margin;
+            }
+            else
+            {
+                line_sensor_readings.lsa_read[m] = black_margin;
+            }
         }
 
         return line_sensor_readings;

@@ -35,21 +35,21 @@ lsa_readings_t read_lsa()
     {
         for (int i = 0; i < 5; i++)
         {
-            line_sensor_readings.lsa_reading[i] = 0;
+            line_sensor_readings.lsa_reading[i] = get_reading_lsa().lsa_[i];
         }
 
-        for (int i = 0; i < NUMBER_OF_SAMPLES; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-                line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + get_reading_lsa().lsa_[j];
-            }
-        }
+        // for (int i = 0; i < NUMBER_OF_SAMPLES; i++)
+        // {
+        //     for (int j = 0; j < 5; j++)
+        //     {
+        //         line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + get_reading_lsa().lsa_[j];
+        //     }
+        // }
 
-        for (int i = 0; i < 5; i++)
-        {
-            line_sensor_readings.lsa_reading[i] = line_sensor_readings.lsa_reading[i] / NUMBER_OF_SAMPLES;
-        }
+        // for (int i = 0; i < 5; i++)
+        // {
+        //     line_sensor_readings.lsa_reading[i] = line_sensor_readings.lsa_reading[i] / NUMBER_OF_SAMPLES;
+        // }
         for (int m = 0; m < 5; m++)
         {
             if (line_sensor_readings.lsa_reading[m] < 1000)

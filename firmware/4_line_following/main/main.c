@@ -1,5 +1,6 @@
 #include "mazeblaze.h"
 #include "tuning_http_server.h"
+#include "line_following.h"
 
 void line_follow(void* arg)
 {
@@ -120,7 +121,5 @@ void line_follow(void* arg)
 
 void app_main(){
     xTaskCreate(&line_follow, "line_follow", 4096, NULL, 1, NULL);
-    start_tuning_http_server();
-    
-   
+    start_tuning_http_server();  
 }

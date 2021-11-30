@@ -1,5 +1,5 @@
-//#ifndef PIN_DEFS_H
-//#define PIN_DEFS_H
+#ifndef PIN_DEFS_H
+#define PIN_DEFS_H
 
 #define CHECK(x)                \
     do                          \
@@ -43,5 +43,4 @@
 #define MDA_NORMAL_IN_5 27 //MCPWM_UNIT_1 MCPWM2A
 #define MDA_NORMAL_IN_6 14 //MCPWM_UNIT_1 MCPWM2B
 
-
-
+#endif

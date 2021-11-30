@@ -1,5 +1,5 @@
-//#ifndef MAZEBLAZE_H
-//#define MAZEBLAZE_H
+#ifndef MAZEBLAZE_H
+#define MAZEBLAZE_H
 
 #include "lsa.h"
 #include "led.h"
@@ -9,4 +9,4 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-//#endif
+#endif

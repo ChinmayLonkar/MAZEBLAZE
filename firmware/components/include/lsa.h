@@ -1,5 +1,5 @@
-//#ifndef LSA_H
-//#define LSA_H
+#ifndef LSA_H
+#define LSA_H
 
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -21,4 +21,4 @@ lsa_readings_t get_reading_lsa();
 lsa_readings_t read_lsa();
 esp_err_t enable_lsa();
 
-//#endif
+#endif

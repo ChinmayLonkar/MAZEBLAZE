@@ -3,6 +3,9 @@
 
 #build
 build/
+
+#vscode
+.vscode/
 # Temporary files
 *.000
 *.bak

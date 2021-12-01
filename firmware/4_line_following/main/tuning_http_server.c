@@ -218,12 +218,12 @@ void start_tuning_http_server()
 {
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    // ESP_ERROR_CHECK(esp_event_loop_create_default());
     initialise_mdns();
     netbiosns_init();
     netbiosns_set_name(MDNS_HOST_NAME);
 
-    connect_to_wifi();
+    // connect_to_wifi();
     ESP_ERROR_CHECK(init_fs());
     ESP_ERROR_CHECK(start_tuning_http_server_private());
     

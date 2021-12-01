@@ -40,7 +40,7 @@ void straight()
             set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle + correction_speed);
         }
         ESP_LOGI("debug", "KP: %f ::  KI: %f  :: KD: %f :: POS: %d :: CS: %d", read_pid_const().kp, read_pid_const().ki, read_pid_const().kd, position().pos,correction_speed);
-
+        vTaskDelay(10/portTICK_PERIOD_MS);
     }
     vTaskDelete(NULL);
 }

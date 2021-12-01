@@ -3,55 +3,60 @@
 #include "line_following.h"
 #include "node_detection.h"
 #include "turn.h"
+#include "esp_log.h"
+#include "esp_err.h"
 
 void maze_explore(void *arg)
 {
     ESP_ERROR_CHECK(enable_lsa());
     ESP_ERROR_CHECK(enable_motor_driver());
-    while (1)
+
+    while (1) 
     {
         if (only_straight())
         {
             go_straight();
         }
-        else if (only_left())
-        {
-            turn(LEFT);
-        }
-        else if (only_right())
-        {
-            turn(RIGHT);
-        }
+        // else if (only_left())
+        // {
+        //     turn(LEFT);
+        // }
+        // else if (only_right())
+        // {
+        //     turn(RIGHT);
+        // }
 
-        else if (plus_node())
-        {
-            turn(LEFT);
-        }
+        // else if (plus_node())
+        // {
+        //     turn(LEFT);
+        // }
 
-        else if (T_node())
-        {
-            turn(LEFT);
-        }
+        // else if (T_node())
+        // {
+        //     turn(LEFT);
+        // }
 
-        else if (straight_right())
-        {
-            go_straight();
-        }
+        // else if (straight_right())
+        // {
+        //     go_straight();
+        // }
 
-        else if (straight_left())
-        {
-            turn(LEFT);
-        }
+        // else if (straight_left())
+        // {
+        //     turn(LEFT);
+        // }
 
-        else if (deadend())
-        {
-            turn(UTURN);
-        }
+        // else if (deadend())
+        // {
+        //     turn(UTURN);
+        // }
 
-        else if (end())
-        {
-            stop();
-        }
+        // else if (end())
+        // {
+        //     stop();
+        // }
+
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
 

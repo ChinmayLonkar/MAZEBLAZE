@@ -6,6 +6,11 @@ build/
 
 #vscode
 .vscode/
+
+#esp-idf
+sdkconfig.old
+sdkconfig
+
 # Temporary files
 *.000
 *.bak

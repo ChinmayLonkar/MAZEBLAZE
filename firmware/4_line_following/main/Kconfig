@@ -1,4 +1,4 @@
-menu "Wall-E Configuration"
+menu "MazeBlaze Configuration"
 
 menu "WiFi Config"
     config WIFI_SSID
@@ -23,7 +23,7 @@ endmenu
 menu "mDNS Config"
     config MDNS_HOST_NAME
         string "mDNS host name (< 15 chars)"
-        default "walle-tuning"
+        default "mazeblaze-tuning"
         help
             mDNS hostname used to access the tuning webpage, it should be less than 15 chars
 endmenu

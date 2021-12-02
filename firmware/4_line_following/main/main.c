@@ -6,6 +6,7 @@
 //#include "esp_log.h"
 #include "esp_err.h"
 // #include "wifi_logger.h"
+
 void maze_explore(void *arg)
 {
    

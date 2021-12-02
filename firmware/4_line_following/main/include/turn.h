@@ -6,9 +6,9 @@
 #include "line_following.h"
 #include "tuning_http_server.h"
 
-#define RIGHT 100
-#define LEFT 101
-#define UTURN 102
+#define RIGHT 1
+#define LEFT 2
+#define UTURN 3
 
 void turn(int direction);
 void stop();

@@ -3,13 +3,13 @@ menu "Wall-E Configuration"
 menu "WiFi Config"
     config WIFI_SSID
         string "WiFi SSID"
-        default "myssid"
+        default "Galaxy M3162C8"
         help
             SSID (network name) for the example to connect to.
 
     config WIFI_PASSWORD
         string "WiFi Password"
-        default "mypassword"
+        default "chindada"
         help
             WiFi password (WPA or WPA2) for the example to use.
 

@@ -2,7 +2,7 @@
 set(COMPONENT_REQUIRES )
 set(COMPONENT_PRIV_REQUIRES )
 
-set(COMPONENT_SRCS "line_following.c" "main.c" "tuning_http_server.c" "wifi_handler.c" "node_detection.c" "turn.c")
+set(COMPONENT_SRCS "line_following.c" "main.c" "tuning_http_server.c" "node_detection.c" "turn.c")
 set(COMPONENT_ADD_INCLUDEDIRS "include")
 
 register_component()

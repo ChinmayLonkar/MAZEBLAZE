@@ -4,21 +4,6 @@ static const char *TAG = "tuning_http_server";
 static char scratch[SCRATCH_BUFSIZE];
 static pid_const_t pid_constants = {.kp = 0.045, .ki = 0.01, .kd = 0.01};
 
-static void initialise_mdns(void)
-{
-    mdns_init();
-    mdns_hostname_set(MDNS_HOST_NAME);
-    mdns_instance_name_set(MDNS_INSTANCE);
-
-    mdns_txt_item_t serviceTxtData[] = {
-        {"board", "esp32"},
-        {"path", "/"}
-    };
-
-    ESP_ERROR_CHECK(mdns_service_add("ESP32-WebServer", "_http", "_tcp", 80, serviceTxtData,
-                                     sizeof(serviceTxtData) / sizeof(serviceTxtData[0])));
-}
-
 static esp_err_t init_fs(void)
 {
     esp_vfs_spiffs_conf_t conf = {
@@ -216,16 +201,7 @@ pid_const_t read_pid_const()
 
 void start_tuning_http_server()
 {
-    ESP_ERROR_CHECK(nvs_flash_init());
-    ESP_ERROR_CHECK(esp_netif_init());
-    // ESP_ERROR_CHECK(esp_event_loop_create_default());
-    initialise_mdns();
-    netbiosns_init();
-    netbiosns_set_name(MDNS_HOST_NAME);
-
-    // connect_to_wifi();
     ESP_ERROR_CHECK(init_fs());
     ESP_ERROR_CHECK(start_tuning_http_server_private());
-    
     vTaskDelete(NULL);
 }

@@ -18,9 +18,8 @@
 #include "esp_vfs.h"
 #include "cJSON.h"
 #include "sdkconfig.h"
-// #include "wifi_handler.h"
 
-#define MDNS_INSTANCE "walle pid tuning web server"
+#define MDNS_INSTANCE "mazeblaze pid tuning web server"
 #define MDNS_HOST_NAME CONFIG_MDNS_HOST_NAME
 #define WEB_MOUNT_POINT "/www"
 #define FILE_PATH_MAX (ESP_VFS_PATH_MAX + 128)

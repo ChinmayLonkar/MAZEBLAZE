@@ -70,6 +70,9 @@ static esp_err_t set_motor_speed_helper(int direction, float duty_cycle, mcpwm_u
 
 esp_err_t set_motor_speed(int motor_id, int direction, float duty_cycle)
 {
+    gpio_pad_pullup(33);
+    gpio_pad_pullup(12);
+    ESP_LOGI(TAG_MOTOR_DRIVER, "MOTOR ID :- %d , Duty Cycle :- %f", motor_id, duty_cycle);
    mcpwm_timer_t timer_val = motor_id == MOTOR_A_0 ? MCPWM_TIMER_0 : MCPWM_TIMER_1;
    return set_motor_speed_helper(direction, duty_cycle, MCPWM_UNIT_1, timer_val);
 }

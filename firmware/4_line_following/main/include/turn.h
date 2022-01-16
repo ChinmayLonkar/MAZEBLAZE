@@ -12,6 +12,7 @@
 
 void turn(int direction);
 void stop();
+// void go_straight();
 void go_straight();
 
 #endif

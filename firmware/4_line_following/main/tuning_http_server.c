@@ -2,8 +2,8 @@
 
 static const char *TAG = "tuning_http_server";
 static char scratch[SCRATCH_BUFSIZE];
-static pid_const_t pid_constants = {.kp = 0.045, .ki = 0.01, .kd = 0.01};
-
+static pid_const_t pid_constants = {.kp = 0.007, .ki = 0.0, .kd = 0.0};
+//{.kp = 0.045, .ki = 0.01, .kd = 0.01}; // chimnays readings
 static esp_err_t init_fs(void)
 {
     esp_vfs_spiffs_conf_t conf = {

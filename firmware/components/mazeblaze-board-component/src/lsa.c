@@ -1,7 +1,7 @@
 #include "lsa.h"
 
-#define black_margin 0
-#define white_margin 100
+#define black_margin 100 // Marck is trying on black lines
+#define white_margin 0
 
 esp_err_t enable_lsa()
 {

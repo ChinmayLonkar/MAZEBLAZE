@@ -4,7 +4,7 @@
 position_t position()
 {
     position_t sum;
-    sum.pos = (5) * read_lsa().lsa_read[0] + (3) * read_lsa().lsa_read[2] + (1) * read_lsa().lsa_read[1] + (-1) * read_lsa().lsa_read[4] + (-3) * read_lsa().lsa_read[3];
+    sum.pos = (5) * read_lsa().lsa_read[4] + (3) * read_lsa().lsa_read[3] + (1) * read_lsa().lsa_read[2] + (-1) * read_lsa().lsa_read[1] + (-3) * read_lsa().lsa_read[0];
     return sum;
 }
 

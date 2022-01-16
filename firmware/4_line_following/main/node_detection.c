@@ -2,7 +2,7 @@
 
 bool only_straight()
 {
-    if (position().pos < 500 && position().pos > -300) // OnlyStraight
+    if (position().pos < 500 && position().pos > -300 && position().pos != 0 && position().pos != 300 && position().pos != 200 && position().pos != -300 && position().pos != 500 && position().pos != 600 && position().pos != -200 && position().pos != -400 && position().pos != 800) // OnlyStraight
     {
         return true;
     }

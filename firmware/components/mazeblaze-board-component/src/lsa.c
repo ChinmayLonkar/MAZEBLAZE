@@ -1,7 +1,7 @@
 #include "lsa.h"
 
 #define black_margin 0
-#define white_margin 100
+#define white_margin 1
 
 esp_err_t enable_lsa()
 {
@@ -19,11 +19,11 @@ lsa_readings_t get_reading_lsa()
     lsa_readings_t lsa;
     {
 
-        lsa.lsa_[0] = adc1_get_raw(ADC1_CHANNEL_0);
-        lsa.lsa_[1] = adc1_get_raw(ADC1_CHANNEL_3);
-        lsa.lsa_[2] = adc1_get_raw(ADC1_CHANNEL_6);
-        lsa.lsa_[3] = adc1_get_raw(ADC1_CHANNEL_7);
-        lsa.lsa_[4] = adc1_get_raw(ADC1_CHANNEL_4);
+        lsa.raw[0] = adc1_get_raw(ADC1_CHANNEL_0);
+        lsa.raw[1] = adc1_get_raw(ADC1_CHANNEL_3);
+        lsa.raw[2] = adc1_get_raw(ADC1_CHANNEL_6);
+        lsa.raw[3] = adc1_get_raw(ADC1_CHANNEL_7);
+        lsa.raw[4] = adc1_get_raw(ADC1_CHANNEL_4);
 
         return lsa;
     }
@@ -33,32 +33,22 @@ lsa_readings_t read_lsa()
 
     lsa_readings_t line_sensor_readings;
     {
-        for (int i = 0; i < 5; i++)
-        {
-            line_sensor_readings.lsa_reading[i] = get_reading_lsa().lsa_[i];
-        }
 
-        // for (int i = 0; i < NUMBER_OF_SAMPLES; i++)
-        // {
-        //     for (int j = 0; j < 5; j++)
-        //     {
-        //         line_sensor_readings.lsa_reading[j] = line_sensor_readings.lsa_reading[j] + get_reading_lsa().lsa_[j];
-        //     }
-        // }
+        line_sensor_readings.lsa_reading[0] = get_reading_lsa().raw[0];
+        line_sensor_readings.lsa_reading[1] = get_reading_lsa().raw[1];
+        line_sensor_readings.lsa_reading[2] = get_reading_lsa().raw[2];
+        line_sensor_readings.lsa_reading[3] = get_reading_lsa().raw[3];
+        line_sensor_readings.lsa_reading[4] = get_reading_lsa().raw[4];
 
-        // for (int i = 0; i < 5; i++)
-        // {
-        //     line_sensor_readings.lsa_reading[i] = line_sensor_readings.lsa_reading[i] / NUMBER_OF_SAMPLES;
-        // }
         for (int m = 0; m < 5; m++)
         {
             if (line_sensor_readings.lsa_reading[m] < 1000)
             {
-                line_sensor_readings.lsa_read[m] = white_margin;
+                line_sensor_readings.data[m] = white_margin;
             }
             else
             {
-                line_sensor_readings.lsa_read[m] = black_margin;
+                line_sensor_readings.data[m] = black_margin;
             }
         }
 

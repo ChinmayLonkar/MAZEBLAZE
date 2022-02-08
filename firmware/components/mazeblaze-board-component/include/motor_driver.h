@@ -11,8 +11,8 @@
 #include "esp_err.h"
 #include "pin_defs.h"
 
-#define MOTOR_FORWARD 201
-#define MOTOR_BACKWARD 200
+#define MOTOR_FORWARD 200
+#define MOTOR_BACKWARD 201
 #define MOTOR_STOP 202
 
 #define MOTOR_A_0 100

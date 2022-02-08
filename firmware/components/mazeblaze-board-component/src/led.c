@@ -5,7 +5,7 @@ esp_err_t enable_led()
 {
     esp_err_t ret;
     gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+    io_conf.intr_type = 0;
     io_conf.mode = GPIO_MODE_OUTPUT;
     io_conf.pin_bit_mask = (1ULL << END_LED);
     io_conf.pull_down_en = 0;

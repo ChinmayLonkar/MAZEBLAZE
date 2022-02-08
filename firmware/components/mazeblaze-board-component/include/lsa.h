@@ -9,12 +9,11 @@
 
 #define NUMBER_OF_SAMPLES CONFIG_NUMBER_OF_SAMPLES
 
-typedef union lsa_readings_t
+typedef struct lsa_readings_t
 {
-    int lsa_[5];
+    int raw[5];
     int lsa_reading[5];
-    int lsa_read[5];
-    int pos;
+    int data[5];
 } lsa_readings_t;
 
 lsa_readings_t get_reading_lsa();

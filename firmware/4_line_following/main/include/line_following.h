@@ -3,7 +3,7 @@
 
 #include "mazeblaze.h"
 
-typedef union position_t
+typedef struct position_t
 {
     int pos;
 } position_t;

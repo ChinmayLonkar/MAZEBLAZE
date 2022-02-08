@@ -7,4 +7,4 @@ set(COMPONENT_ADD_INCLUDEDIRS "include")
 
 register_component()
 
-spiffs_create_partition_image(www "${CMAKE_CURRENT_SOURCE_DIR}/../frontend" FLASH_IN_PROJECT)
+#spiffs_create_partition_image(www "${CMAKE_CURRENT_SOURCE_DIR}/../frontend" FLASH_IN_PROJECT)

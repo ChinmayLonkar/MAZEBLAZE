@@ -1,119 +1,152 @@
 #include "turn.h"
 
 TaskHandle_t task_straight = NULL;
+TaskHandle_t task_turn = NULL;
+TaskHandle_t Maze_explore;
 
-int optimum_duty_cycle = 80;
-int lower_duty_cycle = 70;
-int higher_duty_cycle = 80;
-int duty_cycle = 70;
-int correction_speed;
-void straight()
+int duty_cycle = 72;
+int turnspeed = 60;
+int _turn;
+bool l = false, r = false, flag = false;
+float Kp = 4;
+float Ki = 1;
+float Kd = 10;
+int speed_A_0 , speed_A_1;
+float error = 0, P = 0, I = 0, D = 0, PID_value = 0;
+float previous_error = 0, previous_I = 0;
+void turn(void *arg)
 {
-    while (1)
+    while (_turn == STRAIGHT)
     {
-        // int kp = 1, kd = 0, ki = 0;
-        unsigned int prev_position = 0;
-        long cumulative_position = 0;
-        int current_position = ((int)position().pos) - 100;
-        //500 300 100 -100 -300
-        int position_rate = current_position - prev_position;
-        cumulative_position += current_position;
-        const int max = 25;
-        if (cumulative_position > max)
-            cumulative_position = max;
-        if (cumulative_position < -max)
-            cumulative_position = -max;
-        correction_speed = read_pid_const().kp * current_position + read_pid_const().kd * position_rate + read_pid_const().ki * cumulative_position;
-        // duty_cycle = bound((optimum_duty_cycle - correction_speed), lower_duty_cycle, higher_duty_cycle);
-        if (current_position == 0)
+
+        if ((read_lsa().data[1] == 1) && (read_lsa().data[1] == 0) && (read_lsa().data[1] == 0))
+            error = 2;
+        else if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
+            error = 1;
+        else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
+            error = 0;
+        else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 1))
+            error = -1;
+        else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 1))
+            error = -2;
+        P = error;
+        I = I + previous_I;
+        D = error - previous_error;
+        PID_value = (Kp * P) + (Ki * I) + (Kd * D);
+        previous_I = I;
+        previous_error = error;
+        speed_A_0 = duty_cycle - PID_value;
+        speed_A_1 = duty_cycle + PID_value;
+        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, speed_A_0);
+        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, speed_A_1);
+        if ((read_lsa().data[0] == 1 && read_lsa().data[2] == 0) || read_lsa().data[4] == 1 || (read_lsa().data[0] == 1 && read_lsa().data[1] == 1 && read_lsa().data[2] == 1 && read_lsa().data[3] == 1 && read_lsa().data[4] == 1) || (read_lsa().data[0] == 0 && read_lsa().data[1] == 0 && read_lsa().data[2] == 0 && read_lsa().data[3] == 0 && read_lsa().data[4] == 0))
         {
-            set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle);
-            set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle);
-            // vTaskDelay(10 / portTICK_PERIOD_MS);
+            stop();
+            vTaskResume(Maze_explore);
+            flag = false;
+            break;
         }
-        else if (current_position < 0) // Right on the line
-        {
-            set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle + correction_speed);
-            set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle);
-            // vTaskDelay(10 / portTICK_PERIOD_MS);
-        }
-        else if (current_position > 0)
-        {
-            set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle);
-            set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle - correction_speed);
-            // vTaskDelay(10 / portTICK_PERIOD_MS);
-        }
-        ESP_LOGI("debug", "KP: %f ::  KI: %f  :: KD: %f :: POS: %d :: CS: %d", read_pid_const().kp, read_pid_const().ki, read_pid_const().kd, position().pos, correction_speed);
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
+    while (_turn == LEFT)
+    {
+        if (read_lsa().data[2] == 0)
+        {
+            l = true;
+        }
+
+        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, turnspeed);
+        set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, turnspeed);
+        if (read_lsa().data[2] == 1 && l && read_lsa().data[1] == 1)
+        {
+
+            stop();
+            l = false;
+            flag = true;
+            vTaskResume(Maze_explore);
+            break;
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+
+    while (_turn == RIGHT)
+    {
+        if (read_lsa().data[2] == 0)
+        {
+            r = true;
+        }
+
+        set_motor_speed(MOTOR_A_0, MOTOR_BACKWARD, turnspeed);
+        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, turnspeed);
+        if (read_lsa().data[2] == 1 && r && read_lsa().data[3] == 1)
+        {
+            stop();
+            r = false;
+            flag = true;
+            vTaskResume(Maze_explore);
+            break;
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+    while (_turn == UTURN)
+    {
+        stop();
+        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, turnspeed);
+        set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, turnspeed);
+        if (read_lsa().data[2] == 1 && read_lsa().data[1] == 1)
+        {
+            vTaskResume(Maze_explore);
+            break;
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+    // if(flag)
+    // {
+    //     for (int i = 0; i < 50; i++)
+    //     {
+    //         if ((read_lsa().data[1] == 1) && (read_lsa().data[1] == 0) && (read_lsa().data[1] == 0))
+    //             error = 2;
+    //         else if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
+    //             error = 1;
+    //         else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
+    //             error = 0;
+    //         else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 1))
+    //             error = -1;
+    //         else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 1))
+    //             error = -2;
+    //         P = error;
+    //         I = I + previous_I;
+    //         D = error - previous_error;
+    //         PID_value = (Kp * P) + (Ki * I) + (Kd * D);
+    //         previous_I = I;
+    //         previous_error = error;
+    //         speed_A_0 = duty_cycle - PID_value;
+    //         speed_A_1 = duty_cycle + PID_value;
+    //         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, speed_A_0);
+    //         set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, speed_A_1);
+    //         vTaskDelay(10 / portTICK_PERIOD_MS);
+    //     }
+    //     vTaskDelay(10 / portTICK_PERIOD_MS);
+    //     flag = false;
+    // }
     vTaskDelete(NULL);
 }
-
-void turn(int direction)
-{
-
-    if (task_straight != NULL)
-    {
-        vTaskDelete(task_straight);
-        task_straight = NULL;
-    }
-
-    // stop();
-    if (direction == LEFT)
-    {
-
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle);
-        set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, duty_cycle);
-        vTaskDelay(60 / portTICK_RATE_MS);
-    }
-    else if (direction == RIGHT)
-    {
-
-        set_motor_speed(MOTOR_A_0, MOTOR_BACKWARD, duty_cycle);
-        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle);
-        vTaskDelay(60 / portTICK_RATE_MS);
-    }
-    // if (direction == LEFT)
-    // {
-    //     do
-    //     {
-    //         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle);
-    //         set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, duty_cycle);
-
-    //     } while (read_lsa().lsa_read[0] != 0 && read_lsa().lsa_read[3] != 0);
-    // }
-    // else if (direction == RIGHT)
-    // {
-    //     do
-    //     {
-    //         set_motor_speed(MOTOR_A_0, MOTOR_BACKWARD, duty_cycle);
-    //         set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, duty_cycle);
-
-    //     } while (read_lsa().lsa_read[0] != 0 && read_lsa().lsa_read[3] != 0);
-    // }
-    else if (direction == UTURN)
-    {
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, duty_cycle);
-        set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, duty_cycle);
-        vTaskDelay(200 / portTICK_RATE_MS);
-    }
-    // if (read_lsa().lsa_read[0] != 0 && read_lsa().lsa_read[3] != 0)
-    // {
-    go_straight();
-    // }
-}
-
 void stop()
 {
     set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
     set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
-    // vTaskDelay(100 / portTICK_RATE_MS);
 }
 
-void go_straight()
+void take_turn(int Turn)
 {
-    if (task_straight == NULL)
+    _turn = Turn;
+    if (_turn != END)
     {
-        xTaskCreate(&straight, "straight", 4096, NULL, 1, &task_straight);
+        xTaskCreate(&turn, "turn", 4096, NULL, 1, &task_turn);
+    }
+    else
+    {
+        vTaskDelete(Maze_explore);
+        stop();
     }
 }

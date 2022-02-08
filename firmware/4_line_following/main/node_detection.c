@@ -2,7 +2,7 @@
 
 bool only_straight()
 {
-    if (position().pos < 500 && position().pos > -300) // OnlyStraight
+    if (position().pos == 3 || (read_lsa().data[1] == 1 && read_lsa().data[1] == 1 && read_lsa().data[0] == 0 && read_lsa().data[4] == 0) || (read_lsa().data[3] == 1 && read_lsa().data[3] == 1 && read_lsa().data[0] == 0 && read_lsa().data[4] == 0)) // OnlyStraight
     {
         return true;
     }
@@ -11,7 +11,7 @@ bool only_straight()
 
 bool only_left()
 {
-    if (position().pos == 500) // OnlyLeft
+    if (position().pos == 5) // OnlyLeft
     {
         return true;
     }
@@ -20,7 +20,7 @@ bool only_left()
 
 bool only_right()
 {
-    if (position().pos == -300) // OnlyRight
+    if (position().pos == 1) // OnlyRight
     {
         return true;
     }
@@ -29,7 +29,7 @@ bool only_right()
 
 bool plus_node()
 {
-    if (position().pos == 300) // Plus
+    if (position().pos == 9) // Plus
     {
         return true;
     }
@@ -38,7 +38,7 @@ bool plus_node()
 
 bool T_node()
 {
-    if (position().pos == 200) // T
+    if (position().pos == 6) // T
     {
         return true;
     }
@@ -47,7 +47,7 @@ bool T_node()
 
 bool straight_right()
 {
-    if (position().pos == -200) // StraightRight
+    if (position().pos == 4) // StraightRight
     {
         return true;
     }
@@ -56,7 +56,7 @@ bool straight_right()
 
 bool straight_left()
 {
-    if (position().pos == 600) // StraightLeft
+    if (position().pos == 8) // StraightLeft
     {
         return true;
     }
@@ -65,7 +65,7 @@ bool straight_left()
 
 bool deadend()
 {
-    if (position().pos == 0) // DeadEnd
+    if (read_lsa().data[0] == 0 && read_lsa().data[2] == 0 && read_lsa().data[1] == 0 && read_lsa().data[4] == 0 && read_lsa().data[3] == 0) // DeadEnd
     {
         return true;
     }
@@ -74,7 +74,7 @@ bool deadend()
 
 bool end()
 {
-    if (read_lsa().lsa_read[0] == 100 && read_lsa().lsa_read[2] == 100 && read_lsa().lsa_read[1] == 100 && read_lsa().lsa_read[4] == 100 && read_lsa().lsa_read[3] == 100)
+    if (read_lsa().data[0] == 1 && read_lsa().data[2] == 1 && read_lsa().data[1] == 1 && read_lsa().data[4] == 1 && read_lsa().data[3] == 1)
     {
         return true;
     }

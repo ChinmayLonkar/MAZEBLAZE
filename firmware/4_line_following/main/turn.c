@@ -4,7 +4,7 @@ TaskHandle_t task_turn = NULL;
 TaskHandle_t Maze_explore;
 int turnspeed = 62;
 int TURN;
-bool lr = false, ll = true ;
+bool lr = false, ll = true;
 void turn(void *arg)
 {
     vTaskSuspend(Maze_explore);
@@ -18,12 +18,11 @@ void turn(void *arg)
 
         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, turnspeed);
         set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, turnspeed);
-        if ((read_lsa().data[2] == 1) && ll && (read_lsa().data[3] == 0) && (read_lsa().data[1] == 0))
+        if ((read_lsa().data[2] == 1) && ll)
         {
-
-            stop();
-            lr = false;
-            vTaskResume(Maze_explore);
+            set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+            set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+            ll = false;
             break;
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
@@ -37,12 +36,11 @@ void turn(void *arg)
 
         set_motor_speed(MOTOR_A_0, MOTOR_BACKWARD, turnspeed);
         set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, turnspeed);
-        if ((read_lsa().data[2] == 1) && lr && (read_lsa().data[3] == 0) && (read_lsa().data[1] == 0))
+        if ((read_lsa().data[2] == 1) && lr)
         {
-
-            stop();
-            ll = false;
-            vTaskResume(Maze_explore);
+            set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+            set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+            lr = false;
             break;
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
@@ -51,22 +49,16 @@ void turn(void *arg)
     {
         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, turnspeed);
         set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, turnspeed);
-        if ((read_lsa().data[2] == 1) && (read_lsa().data[3] == 0) && (read_lsa().data[1] == 0))
+        if ((read_lsa().data[2] == 1))
         {
-
-
-            stop();
-            vTaskResume(Maze_explore);
+            set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+            set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
             break;
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
+    vTaskResume(Maze_explore);
     vTaskDelete(NULL);
-}
-void stop()
-{
-    set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
-    set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
 }
 
 void take_turn(int Turn)

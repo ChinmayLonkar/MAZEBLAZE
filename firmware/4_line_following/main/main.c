@@ -1,10 +1,11 @@
 #include "mazeblaze.h"
-//#include "tuning_http_server.h"
+#include "tuning_http_server.h"
 //#include "line_following.h"
 //#include "node_detection.h"
 #include "turn.h"
 #include "esp_err.h"
-//#include "wifi_logger.h"
+#include "wifi_logger.h"
+#define STRAIGHT 0
 #define ST_L 1
 #define PL 2
 #define T 3
@@ -15,6 +16,7 @@
 
 bool endl = true;
 int palat;
+int prev = 0;
 
 int duty_cycle = 72;
 int _turn;
@@ -52,8 +54,10 @@ void maze_explore(void *arg)
             speed_A_1 = duty_cycle + PID_value;
             set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, speed_A_0);
             set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, speed_A_1);
-            if ((read_lsa().data[4] == 1) || (read_lsa().data[0] == 1))
+            prev++;
+            if (((read_lsa().data[4] == 1) || (read_lsa().data[0] == 1)) && (prev >= 50))
             {
+                prev = 0;
                 break;
             }
             if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 1))
@@ -63,8 +67,11 @@ void maze_explore(void *arg)
                 break;
             }
         }
-        vTaskDelay(30 / portTICK_PERIOD_MS);
-        stop();
+        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 62);
+        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 62);
+        vTaskDelay(40 / portTICK_PERIOD_MS);
+        set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+        set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
         if ((read_lsa().data[4] == 1) && (read_lsa().data[0] == 1))
         {
             pt = true;
@@ -79,8 +86,9 @@ void maze_explore(void *arg)
         }
         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 62);
         set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 62);
-        vTaskDelay(120 / portTICK_PERIOD_MS);
-        stop();
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+        set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
         if (pt)
         {
             _turn = T;
@@ -105,11 +113,14 @@ void maze_explore(void *arg)
         }
         l = false;
         r = false;
-        ESP_LOGI("debug", "Turn: %d", _turn);
-        ESP_LOGI("debug", "Palat: %d", palat);
+        pt = false;
+        // ESP_LOGI("debug", "Turn: %d", _turn);
+        // ESP_LOGI("debug", "Palat: %d", palat);
 
         if (_turn != ST_R)
         {
+            ESP_LOGI("debug", "Itterations: %d", prev);
+            prev = 0;
             take_turn(palat);
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);

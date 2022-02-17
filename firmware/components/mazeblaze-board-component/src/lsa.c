@@ -51,6 +51,16 @@ lsa_readings_t read_lsa()
                 line_sensor_readings.data[m] = black_margin;
             }
         }
+        if(line_sensor_readings.data[1] == 0){
+            line_sensor_readings.data[1] =1;
+        }else{
+            line_sensor_readings.data[1] =0;
+        }
+        if(line_sensor_readings.data[3] == 0){
+            line_sensor_readings.data[3] =1;
+        }else{
+            line_sensor_readings.data[3] =0;
+        }
 
         return line_sensor_readings;
     }

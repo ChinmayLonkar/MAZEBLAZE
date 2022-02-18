@@ -18,7 +18,6 @@ void turn(void *arg)
 
         set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, turnspeed);
         set_motor_speed(MOTOR_A_1, MOTOR_BACKWARD, turnspeed);
-
         if ((read_lsa().data[2] == 1) && ll)
         {
             set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);

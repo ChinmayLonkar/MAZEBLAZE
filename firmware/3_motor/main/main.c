@@ -9,9 +9,6 @@ void app_main(void)
     while (1)
     {
         printf("%d %d %d %d %d \n", read_lsa().data[4], read_lsa().data[3], read_lsa().data[2], read_lsa().data[1], read_lsa().data[0]);
-
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 62);
-        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 62);
-        vTaskDelay(10 / portTICK_RATE_MS);
+        vTaskDelay(40 / portTICK_PERIOD_MS);
     }
 }

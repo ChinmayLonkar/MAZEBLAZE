@@ -25,8 +25,16 @@ esp_err_t enable_motor_driver()
     o_conf.pin_bit_mask = ((1ULL << GPIO_NUM_33) | (1ULL <<GPIO_NUM_12));
     o_conf.pull_down_en = 0;
     o_conf.pull_up_en = 0;
+
+    // gpio_config_t deb_conf;
+    // o_conf.intr_type = 0;
+    // o_conf.mode = GPIO_MODE_INPUT;
+    // o_conf.pin_bit_mask = (1ULL << DEBUG_SWITCH);
+    // o_conf.pull_down_en = 0;
+    // o_conf.pull_up_en = 1;
     
     gpio_config(&o_conf);
+    // gpio_config(&deb_conf);
     if (err1_0 == ESP_OK && err1_1 == ESP_OK)
     {
         ESP_LOGI(TAG_MOTOR_DRIVER, "enabled motor");

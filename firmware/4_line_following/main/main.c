@@ -32,6 +32,7 @@ void maze_explore(void *arg)
 {
     while (gpio_get_level(DEBUG_SWITCH) == 1)
     {
+        set_led_off();
         while (1)
         {
             if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 0))

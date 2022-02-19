@@ -20,7 +20,7 @@ int prev = 0;
 int i = 0;
 char actual_path[] = "RRLRLLRLRRSRRLSLRLLSLRSST";
 int duty_cycle = 72;
-int _turn, end = 0;
+int _turn, End = 0;
 bool l = false, r = false, pt = false, ot = false, flag = false;
 float Kp = 5;
 float Ki = 0.5;
@@ -60,7 +60,7 @@ void maze_explore(void *arg)
             {
                 if (read_lsa().data[0] == 1)
                 {
-                    end++;
+                    End++;
                 }
                 prev = 0;
                 break;
@@ -97,13 +97,13 @@ void maze_explore(void *arg)
         if (pt)
         {
             _turn = T;
-            end = 0;
+            End = 0;
             palat = LEFT;
         }
         if (l)
         {
             _turn = L;
-            end = 0;
+            End = 0;
             palat = LEFT;
         }
         if (r)
@@ -111,7 +111,7 @@ void maze_explore(void *arg)
             if (read_lsa().data[2] == 0)
             {
                 _turn = R;
-                end = 0;
+                End = 0;
                 palat = RIGHT;
             }
             else if (read_lsa().data[2] == 1)
@@ -119,9 +119,9 @@ void maze_explore(void *arg)
                 _turn = ST_R;
             }
         }
-        if (end >= 30)
+        if (End >= 30)
         {
-            end = 0;
+            End = 0;
             _turn = ST_R;
             set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
             set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
@@ -139,7 +139,7 @@ void maze_explore(void *arg)
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
-    while (gpio_get_level == 0)
+    while (gpio_get_level(DEBUG_SWITCH) == 0)
     {
 
         while (1)

@@ -1,7 +1,5 @@
 #include "mazeblaze.h"
 #include "tuning_http_server.h"
-//#include "line_following.h"
-//#include "node_detection.h"
 #include "turn.h"
 #include "esp_err.h"
 #include "wifi_logger.h"
@@ -19,18 +17,18 @@ int palat;
 int prev = 0;
 int i = 0;
 char actual_path[] = "RRLRLLRLRRSRRLSLRLLSLRSST";
-int duty_cycle = 72;
+int duty_cycle = 80;
 int _turn, End = 0;
 bool l = false, r = false, pt = false, ot = false, flag = false;
-float Kp = 5;
-float Ki = 0.5;
-float Kd = 15;
+float Kp = 12;
+float Ki = 2;
+float Kd = 7;
 int speed_A_0, speed_A_1;
 float error = 0, P = 0, I = 0, D = 0, PID_value = 0;
 float previous_error = 0, previous_I = 0;
 void maze_explore(void *arg)
 {
-    while (gpio_get_level(DEBUG_SWITCH) == 1)
+    while (1)
     {
         set_led_off();
         while (1)
@@ -39,7 +37,7 @@ void maze_explore(void *arg)
                 error = -2;
             else if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
                 error = -1;
-            else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 0))
+            else if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 1))
                 error = 0;
             else if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 1) && (read_lsa().data[3] == 1))
                 error = 1;
@@ -51,8 +49,8 @@ void maze_explore(void *arg)
             PID_value = (Kp * P) + (Ki * I) + (Kd * D);
             previous_I = I;
             previous_error = error;
-            speed_A_0 = duty_cycle - PID_value;
-            speed_A_1 = duty_cycle + PID_value;
+            speed_A_0 = duty_cycle + PID_value;
+            speed_A_1 = duty_cycle - PID_value;
             set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, speed_A_0);
             set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, speed_A_1);
             prev++;
@@ -65,18 +63,19 @@ void maze_explore(void *arg)
                 prev = 0;
                 break;
             }
-            if ((read_lsa().data[1] == 1) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 1))
+            if ((read_lsa().data[1] == 0) && (read_lsa().data[2] == 0) && (read_lsa().data[3] == 0))
             {
                 _turn = U;
                 palat = UTURN;
                 break;
             }
+            vTaskDelay(10 / portTICK_PERIOD_MS);
         }
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 62);
-        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 62);
+
+        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 72);
+        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 72);
         vTaskDelay(40 / portTICK_PERIOD_MS);
-        set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
-        set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+
         if ((read_lsa().data[4] == 1) && (read_lsa().data[0] == 1))
         {
             pt = true;
@@ -89,11 +88,13 @@ void maze_explore(void *arg)
         {
             r = true;
         }
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 62);
-        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 62);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
-        set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+        
+        while(((pt || l) && read_lsa().data[4] == 1) || (r && read_lsa().data[0] == 1)){
+            set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+            set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+            vTaskDelay(10 / portTICK_PERIOD_MS);
+        }
+
         if (pt)
         {
             _turn = T;
@@ -139,7 +140,7 @@ void maze_explore(void *arg)
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
-    while (gpio_get_level(DEBUG_SWITCH) == 0)
+    while (0)
     {
 
         while (1)

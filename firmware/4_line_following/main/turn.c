@@ -2,7 +2,7 @@
 
 TaskHandle_t task_turn = NULL;
 TaskHandle_t Maze_explore;
-int turnspeed = 62;
+int turnspeed = 72;
 int TURN;
 bool lr = false, ll = false;
 void turn(void *arg)

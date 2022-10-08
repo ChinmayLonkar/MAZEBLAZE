@@ -19,11 +19,11 @@ lsa_readings_t get_reading_lsa()
     lsa_readings_t lsa;
     {
 
-        lsa.raw[0] = adc1_get_raw(ADC1_CHANNEL_0);
-        lsa.raw[1] = adc1_get_raw(ADC1_CHANNEL_3);
+        lsa.raw[0] = adc1_get_raw(ADC1_CHANNEL_4);
+        lsa.raw[1] = adc1_get_raw(ADC1_CHANNEL_7);
         lsa.raw[2] = adc1_get_raw(ADC1_CHANNEL_6);
-        lsa.raw[3] = adc1_get_raw(ADC1_CHANNEL_7);
-        lsa.raw[4] = adc1_get_raw(ADC1_CHANNEL_4);
+        lsa.raw[3] = adc1_get_raw(ADC1_CHANNEL_3);
+        lsa.raw[4] = adc1_get_raw(ADC1_CHANNEL_0);
 
         return lsa;
     }
@@ -42,7 +42,7 @@ lsa_readings_t read_lsa()
 
         for (int m = 0; m < 5; m++)
         {
-            if (line_sensor_readings.lsa_reading[m] < 1000)
+            if (line_sensor_readings.lsa_reading[m] < 4000)
             {
                 line_sensor_readings.data[m] = white_margin;
             }
@@ -50,16 +50,6 @@ lsa_readings_t read_lsa()
             {
                 line_sensor_readings.data[m] = black_margin;
             }
-        }
-        if(line_sensor_readings.data[1] == 0){
-            line_sensor_readings.data[1] =1;
-        }else{
-            line_sensor_readings.data[1] =0;
-        }
-        if(line_sensor_readings.data[3] == 0){
-            line_sensor_readings.data[3] =1;
-        }else{
-            line_sensor_readings.data[3] =0;
         }
 
         return line_sensor_readings;

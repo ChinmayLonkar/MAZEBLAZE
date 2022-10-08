@@ -8,7 +8,7 @@ void app_main(void)
    
     while (1)
     {
-        printf("%d %d %d %d %d \n", read_lsa().lsa_read[0], read_lsa().lsa_read[2], read_lsa().lsa_read[1], read_lsa().lsa_read[4],read_lsa().lsa_read[3]);
+        printf("%d %d %d %d %d \n", read_lsa().data[0], read_lsa().data[1], read_lsa().data[2], read_lsa().data[3],read_lsa().data[4]);
         vTaskDelay(10 / portTICK_RATE_MS);
     }
 }

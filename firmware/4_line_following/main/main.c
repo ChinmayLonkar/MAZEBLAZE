@@ -20,9 +20,9 @@ char actual_path[] = "RRLRLLRLRRSRRLSLRLLSLRSST";
 int duty_cycle = 80;
 int _turn, End = 0;
 bool l = false, r = false, pt = false, ot = false, flag = false;
-float Kp = 12;
-float Ki = 2;
-float Kd = 7;
+float Kp = 5;
+float Ki = 0.5;
+float Kd = 10;
 int speed_A_0, speed_A_1;
 float error = 0, P = 0, I = 0, D = 0, PID_value = 0;
 float previous_error = 0, previous_I = 0;
@@ -71,10 +71,10 @@ void maze_explore(void *arg)
             }
             vTaskDelay(10 / portTICK_PERIOD_MS);
         }
-
-        set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 72);
-        set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 72);
         vTaskDelay(40 / portTICK_PERIOD_MS);
+
+        set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+        set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
 
         if ((read_lsa().data[4] == 1) && (read_lsa().data[0] == 1))
         {
@@ -88,10 +88,18 @@ void maze_explore(void *arg)
         {
             r = true;
         }
-        
-        while(((pt || l) && read_lsa().data[4] == 1) || (r && read_lsa().data[0] == 1)){
-            set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
-            set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+
+        while (pt || l || r)
+        {
+            set_motor_speed(MOTOR_A_0, MOTOR_FORWARD, 68);
+            set_motor_speed(MOTOR_A_1, MOTOR_FORWARD, 68);
+
+            if (((pt || l) && read_lsa().data[4] == 0) || (r && read_lsa().data[0] == 0))
+            {
+                set_motor_speed(MOTOR_A_0, MOTOR_STOP, 0);
+                set_motor_speed(MOTOR_A_1, MOTOR_STOP, 0);
+                break;
+            }
             vTaskDelay(10 / portTICK_PERIOD_MS);
         }
 
@@ -223,13 +231,21 @@ void maze_explore(void *arg)
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
+void print(void *arg)
+{
+    while (1)
+    {
+        printf("%d %d %d %d %d \n", read_lsa().data[0], read_lsa().data[1], read_lsa().data[2], read_lsa().data[3], read_lsa().data[4]);
+        vTaskDelay(10 / portTICK_RATE_MS);
+    }
+}
 
 void app_main()
 {
     ESP_ERROR_CHECK(enable_lsa());
     ESP_ERROR_CHECK(enable_motor_driver());
     // start_wifi_logger(); // Start wifi logger
-
+    xTaskCreate(&print, "print", 4096, NULL, 2, NULL);
     if (endl)
     { // xTaskCreate(&start_tuning_http_server,"start server",4096,NULL,1,NULL);
         xTaskCreate(&maze_explore, "maze explore", 4096, NULL, 1, &Maze_explore);
